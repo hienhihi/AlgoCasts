@@ -8,6 +8,16 @@
 //     q.add(1);
 //     q.remove(); // returns 1;
 
-class Queue {}
+class Queue {
+  constructor() { // to create the datat structure, here is array
+    this.data = [];
+  }
+  add(val) { //add to the front
+    this.data.unshift(val);
+  }
+  remove(val) {
+    return this.data.pop(); //return from the back
+  }
+}
 
 module.exports = Queue;
