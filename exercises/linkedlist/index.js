@@ -30,16 +30,17 @@ class LinkedList {
     return this.head;
   }
   getLast() {
-    if (!this.head) {
-      return null
-    }
-    let current = this.head;
-    let last = current.data;
-    while (current) {
-      last = current;
-      current = current.next;
-    }
-    return last;
+    // if (!this.head) {
+    //   return null
+    // }
+    // let current = this.head;
+    // let last = current.data;
+    // while (current) {
+    //   last = current;
+    //   current = current.next;
+    // }
+    // return last;
+    return this.getAt(this.size() -1);
   }
   clear() {
     this.head = null;
@@ -64,6 +65,68 @@ class LinkedList {
     }
     previous.next = null;
   }
+  insertLast(data) {
+    let last = this.getLast();
+    if (last) {
+      last.next = new Node(data)
+    } else {
+      this.head = new Node(data);
+    }
+  }
+  getAt(index) {
+    let counter = 0;
+    let current = this.head;
+    if (!this.head) {
+      return null
+    }
+    while (current) {
+      if (counter === index) {
+        return current;
+      }
+      current = current.next;
+      counter++;
+    }
+  }
+  removeAt(index) {
+    if (!this.head) {
+      return
+    }
+    if (index === 0) {
+      this.head = this.head.next;
+      return;
+    }
+    let current = this.getAt(index-1);
+    if (!current || !current.next) {
+      return;
+    } 
+    current.next = current.next.next;
+  }
+  insertAt(data, index) {
+    if (!this.head) {
+      this.head = new Node(data);
+      this.head.next = null;
+      return
+    } 
+    if (index === 0) {
+      this.head = new Node(data, this.head);
+      return;
+    } 
+    let previous = this.getAt(index -1) || this.getLast();
+    let node = new Node(data, previous.next);
+    // newNode.next = this.getAt(index+1);
+    previous.next = node;
+
+  }
+  forEach(func) {
+    //apply this function in everysingle item
+    let current = this.head;
+    while (current) {
+      func(current);
+      current = current.next;
+    }
+    return;
+  }
+
 }
 
 // const list = new LinkedList();
