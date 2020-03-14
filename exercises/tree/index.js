@@ -26,7 +26,17 @@ class Node {
 }
 
 class Tree {
-
+  constructor() {
+    this.root = null;
+  }
+  traverseBF(cb) {
+    const arr = [this.root];
+    while (arr.length) {
+      const node = arr.shift();
+      arr.push(...node.children) //take all the elements out of here and push them in 1 by 1
+      cb(node)
+    }
+  }
 }
-
+//needs to add children by node somehow. so instead of new tree I can do new node
 module.exports = { Tree, Node };
