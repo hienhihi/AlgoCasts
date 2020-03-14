@@ -37,6 +37,16 @@ class Tree {
       cb(node)
     }
   }
+  traverseDF(cb) {
+    const arr = [this.root];
+    while (arr.length) {
+      const node = arr.shift();
+      while (node.children) {
+        console.log('hi');
+      }
+    }
+  }
+
 }
 //needs to add children by node somehow. so instead of new tree I can do new node
 module.exports = { Tree, Node };
